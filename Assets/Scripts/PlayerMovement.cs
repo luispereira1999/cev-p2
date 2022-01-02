@@ -3,25 +3,27 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
-    public float speed;
+    public float playerSpeed;
     private float diretionX;
     private float diretionY;
+    public float limitMinX;
+    public float limitMaxX;
+    public float limitMinY;
+    public float limitMaxY;
 
-    // é chamado antes do primeiro frame
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // é chamado a cada frame
     void Update()
     {
-        diretionX = Input.GetAxisRaw("Horizontal") * speed;
-        diretionY = Input.GetAxisRaw("Vertical") * speed;
+        diretionX = Input.GetAxisRaw("Horizontal") * playerSpeed;
+        diretionY = Input.GetAxisRaw("Vertical") * playerSpeed;
 
         transform.position = new Vector2(
-            Mathf.Clamp(transform.position.x, -9.4f, 9.4f),
-            Mathf.Clamp(transform.position.y, -9.3f, 9.3f));
+            Mathf.Clamp(transform.position.x, limitMinX, limitMaxX),
+            Mathf.Clamp(transform.position.y, limitMinY, limitMaxY));
     }
 
     void FixedUpdate()
