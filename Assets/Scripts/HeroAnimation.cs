@@ -8,11 +8,11 @@ public class HeroAnimation : MonoBehaviour
     {
         if (Input.GetAxisRaw("Vertical") > 0)
         {
-            playerAnimator.Play("front");
+            playerAnimator.Play("back");
         }
         if (Input.GetAxisRaw("Vertical") < 0)
         {
-            playerAnimator.Play("back");
+            playerAnimator.Play("front");
         }
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
