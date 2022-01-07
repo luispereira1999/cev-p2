@@ -1,8 +1,16 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Level2Controller : MonoBehaviour
 {
-    public int lives;
+    public int requiredPeaces;
+    int foundPeaces;
+    public Text text;
+
+    private void Start()
+    {
+        foundPeaces = 0;
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -10,32 +18,25 @@ public class Level2Controller : MonoBehaviour
         {
             GameObject item = collision.collider.gameObject;
 
-            if (item.tag == "Trash")
+            if (item.tag == "Peace")
             {
-                Debug.Log("Recolheu lixo");
-                Destroy(collision.collider.gameObject);
-            }
-            else if (item.tag == "Obstacle")
-            {
-                Debug.Log("Perdeu uma vida");
-                loseLive();
+                Debug.Log("a");
 
-                if (this.gameOver())
-                {
-                    Debug.Log("Game Over!");
-                }
+                collectPeace();
+                item.tag = "Untagged";
             }
         }
     }
 
-    void loseLive()
+    void collectPeace()
     {
-        this.lives--;
+        this.foundPeaces++;
+        text.text = this.foundPeaces.ToString();
     }
 
-    bool gameOver()
+    bool gameWin()
     {
-        if (this.lives == 0)
+        if (this.foundPeaces == requiredPeaces)
         {
             return true;
         }

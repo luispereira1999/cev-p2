@@ -10,7 +10,7 @@ public class ChestColision : MonoBehaviour
         {
             GameObject item = collision.collider.gameObject;
 
-            if (item.tag == "Hero")
+            if (item.tag == "Player")
             {
                 OpenChest();
             }

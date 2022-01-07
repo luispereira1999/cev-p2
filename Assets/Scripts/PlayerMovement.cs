@@ -11,9 +11,13 @@ public class PlayerMovement : MonoBehaviour
     public float limitMinY;
     public float limitMaxY;
 
+    private AudioSource sound;
+    private bool isMoving = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sound = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -24,6 +28,27 @@ public class PlayerMovement : MonoBehaviour
         transform.position = new Vector2(
             Mathf.Clamp(transform.position.x, limitMinX, limitMaxX),
             Mathf.Clamp(transform.position.y, limitMinY, limitMaxY));
+
+        if (rb.velocity.x != 0 || rb.velocity.y != 0)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
+
+        if (isMoving)
+        {
+            if (!sound.isPlaying)
+            {
+                sound.Play();
+            }
+        }
+        else
+        {
+            sound.Stop();
+        }
     }
 
     void FixedUpdate()
