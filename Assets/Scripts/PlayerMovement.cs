@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     public float limitMinY;
     public float limitMaxY;
 
+    public GameObject projectile;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -24,10 +26,19 @@ public class PlayerMovement : MonoBehaviour
         transform.position = new Vector2(
             Mathf.Clamp(transform.position.x, limitMinX, limitMaxX),
             Mathf.Clamp(transform.position.y, limitMinY, limitMaxY));
+
+        if (Input.GetKeyDown("space")) {
+            shootProjectile();
+        }
     }
 
     void FixedUpdate()
     {
         rb.velocity = new Vector2(diretionX, diretionY);
+    }
+
+    public void shootProjectile() {
+        GameObject p = Instantiate(projectile) as GameObject;
+        p.transform.position = transform.position;
     }
 }
