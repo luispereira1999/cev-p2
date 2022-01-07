@@ -5826,7 +5826,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 952228822}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 696458668}
@@ -6487,6 +6487,7 @@ MonoBehaviour:
   limitMaxX: 20
   limitMinY: -20
   limitMaxY: 20
+  projectile: {fileID: 0}
 --- !u!114 &2008332473
 MonoBehaviour:
   m_ObjectHideFlags: 0

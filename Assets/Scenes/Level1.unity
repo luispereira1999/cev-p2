@@ -460,6 +460,7 @@ MonoBehaviour:
   limitMaxX: 7
   limitMinY: -6
   limitMaxY: 6
+  projectile: {fileID: 0}
 --- !u!50 &994019080
 Rigidbody2D:
   serializedVersion: 4
@@ -533,7 +534,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: faa4fb4a8c812f249af06a2e210f8f0b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
