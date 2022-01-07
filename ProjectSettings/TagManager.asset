@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Trash
   - Obstacle
-  - Enemy
+  - Hero
   layers:
   - Default
   - TransparentFX
