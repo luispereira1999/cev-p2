@@ -4,10 +4,10 @@ using UnityEngine.UI;
 public class Level2Controller : MonoBehaviour
 {
     public int requiredPeaces;
-    int foundPeaces;
+    private int foundPeaces;
     public Text text;
 
-    private void Start()
+    void Start()
     {
         foundPeaces = 0;
     }
@@ -18,12 +18,10 @@ public class Level2Controller : MonoBehaviour
         {
             GameObject item = collision.collider.gameObject;
 
-            if (item.tag == "Peace")
+            if (item.tag != "Untagged")
             {
-                Debug.Log("a");
-
                 collectPeace();
-                item.tag = "Untagged";
+                //item.tag = "Untagged";
             }
         }
     }
