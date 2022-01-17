@@ -20,21 +20,17 @@ public class ChestColision : MonoBehaviour
     {
         if (collision.collider.IsTouching(collision.otherCollider))
         {
-            GameObject item = collision.otherCollider.gameObject;
-            GameObject peace = collision.collider.gameObject;
-
-            if (item.tag != "Untaggdd")
+            GameObject chest = collision.otherCollider.gameObject;
+           
+            if (chest.tag != "Untagged")
             {
-                playerAnimator.Play("open");
-                sound.Play();
-                //item.tag = "Untagged";
-                Debug.Log("recolhido");
-                //OpenChest();
+                OpenChest();
+                chest.tag = "Untagged";
             }
         }
     }
 
-    void OpenChest()
+    private void OpenChest()
     {
         playerAnimator.Play("open");
         sound.Play();
