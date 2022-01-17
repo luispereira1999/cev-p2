@@ -683,7 +683,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cb62127915a789b4eb9517be44250ec3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f6046ff098562c14b84e6dca9f342852, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -859,7 +859,7 @@ GameObject:
   - component: {fileID: 1046093744}
   - component: {fileID: 1046093743}
   m_Layer: 0
-  m_Name: Menu-controller
+  m_Name: Main-menu-controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

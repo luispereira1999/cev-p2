@@ -9,6 +9,9 @@ public class Level1Controller : MonoBehaviour
     public Text textTrash;
     public Text textLives;
 
+    public GameObject panelWin;
+    public GameObject panelLose;
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.IsTouching(collision.otherCollider))
@@ -19,6 +22,11 @@ public class Level1Controller : MonoBehaviour
             {
                 collectTrash();
                 Destroy(collision.collider.gameObject);
+
+                if (this.gameWin())
+                {
+                    panelWin.gameObject.SetActive(true);
+                }
             }
             else if (item.tag == "Obstacle")
             {
@@ -26,7 +34,7 @@ public class Level1Controller : MonoBehaviour
 
                 if (this.gameOver())
                 {
-                    Debug.Log("Game Over!");
+                    panelLose.gameObject.SetActive(true);
                 }
             }
         }
