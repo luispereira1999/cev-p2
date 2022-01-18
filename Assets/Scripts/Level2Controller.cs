@@ -5,7 +5,10 @@ public class Level2Controller : MonoBehaviour
 {
     public int requiredPeaces;
     private int foundPeaces;
-    public Text text;
+    public Text textPeaces;
+
+    public GameObject panelWin;
+    public GameObject panelLose;
 
     void Start()
     {
@@ -18,10 +21,15 @@ public class Level2Controller : MonoBehaviour
         {
             GameObject item = collision.collider.gameObject;
 
-            if (item.tag != "Untagged")
+            if (item.tag == "Peace")
             {
                 collectPeace();
-                //item.tag = "Untagged";
+                item.tag = "Untagged";
+
+                if (this.gameWin())
+                {
+                    panelWin.gameObject.SetActive(true);
+                }
             }
         }
     }
@@ -29,7 +37,7 @@ public class Level2Controller : MonoBehaviour
     void collectPeace()
     {
         this.foundPeaces++;
-        text.text = this.foundPeaces.ToString();
+        textPeaces.text = this.foundPeaces.ToString();
     }
 
     bool gameWin()
