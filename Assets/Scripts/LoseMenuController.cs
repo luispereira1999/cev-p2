@@ -13,7 +13,7 @@ public class LoseMenuController : MonoBehaviour
 
     public void RestartLevel()
     {
-
+        Application.LoadLevel(Application.loadedLevel);
     }
 
     public void GoToMenu()
