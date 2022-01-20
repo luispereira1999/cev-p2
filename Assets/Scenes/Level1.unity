@@ -102434,10 +102434,10 @@ GameObject:
   - component: {fileID: 994019078}
   - component: {fileID: 994019081}
   - component: {fileID: 994019080}
-  - component: {fileID: 994019079}
   - component: {fileID: 994019075}
   - component: {fileID: 994019082}
   - component: {fileID: 994019083}
+  - component: {fileID: 994019079}
   - component: {fileID: 994019084}
   m_Layer: 0
   m_Name: ship
@@ -102553,11 +102553,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 994019074}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2a310913f0c84e459bcd3aafc3c61e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ffca5b20dd2745459776a46e9d5992b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 6
-  projectile: {fileID: 0}
+  speed: 3
 --- !u!50 &994019080
 Rigidbody2D:
   serializedVersion: 4
