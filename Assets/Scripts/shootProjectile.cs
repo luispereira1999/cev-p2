@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class shootProjectile : MonoBehaviour
+public class ShootProjectile : MonoBehaviour
 {
     public Vector2 positionVector;
 
@@ -13,12 +13,15 @@ public class shootProjectile : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            Debug.Log("ATACOU INIMIGO");
-            Destroy(gameObject);
+            //Destroy(gameObject);
+        }
+        else if (collision.CompareTag("Player"))
+        {
+            //Destroy(gameObject);
         }
         else
         {
-            Destroy(gameObject, 2);
+            //Destroy(gameObject, 2);
         }
     }
 }

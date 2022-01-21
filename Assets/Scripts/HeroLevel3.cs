@@ -10,8 +10,7 @@ public class HeroLevel3 : MonoBehaviour
 
     public Transform projectile;
     public Transform projectilePivot;
-    public GameObject enemy;
-    private Vector3 positionVector;
+    private Vector2 positionVector;
 
     void Start()
     {
@@ -63,7 +62,7 @@ public class HeroLevel3 : MonoBehaviour
 
         if (Input.GetKeyDown("space"))
         {
-            shootProjectile();
+            Attack();
         }
     }
 
@@ -78,9 +77,9 @@ public class HeroLevel3 : MonoBehaviour
         rb.velocity = movement;
     }
 
-    public void shootProjectile()
+    public void Attack()
     {
         Instantiate(projectile, projectilePivot.position, Quaternion.identity);
-        projectile.GetComponent<shootProjectile>().positionVector = positionVector;
+        projectile.GetComponent<ShootProjectile>().positionVector = positionVector;
     }
 }
