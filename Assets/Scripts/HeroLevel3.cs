@@ -12,10 +12,13 @@ public class HeroLevel3 : MonoBehaviour
     public Transform projectilePivot;
     private Vector2 positionVector;
 
+    public static float health;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sound = GetComponent<AudioSource>();
+        health = 1;
     }
 
     void Update()
@@ -81,5 +84,29 @@ public class HeroLevel3 : MonoBehaviour
     {
         Instantiate(projectile, projectilePivot.position, Quaternion.identity);
         projectile.GetComponent<ShootProjectile>().positionVector = positionVector;
+    }
+
+    //bool GameWin()
+    //{
+    //    if (enemy.health == 0)
+    //    {
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
+    //}
+
+    bool GameOver()
+    {
+        if (health <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

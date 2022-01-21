@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        InvokeRepeating("Attack", 4f, 1f);
+        InvokeRepeating("Attack", 2f, 1f);
         positionVector = Vector2.up;
     }
 

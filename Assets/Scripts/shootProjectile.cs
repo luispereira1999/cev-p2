@@ -13,15 +13,16 @@ public class ShootProjectile : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            //Destroy(gameObject);
+
         }
         else if (collision.CompareTag("Player"))
         {
+            HeroLevel3.health -= 0.15f;
             //Destroy(gameObject);
         }
         else
         {
-            //Destroy(gameObject, 2);
+            Destroy(gameObject, 2);
         }
     }
 }
