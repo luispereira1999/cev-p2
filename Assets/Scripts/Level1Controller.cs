@@ -1,8 +1,16 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Level1Controller : MonoBehaviour
 {
+    public int requiredTrash;
+    private int foundTrash;
     public int lives;
+    public Text textTrash;
+    public Text textLives;
+
+    public GameObject panelWin;
+    public GameObject panelLose;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -12,25 +20,48 @@ public class Level1Controller : MonoBehaviour
 
             if (item.tag == "Trash")
             {
-                Debug.Log("Recolheu lixo");
+                collectTrash();
                 Destroy(collision.collider.gameObject);
+
+                if (this.gameWin())
+                {
+                    panelWin.gameObject.SetActive(true);
+                }
             }
             else if (item.tag == "Obstacle")
             {
-                Debug.Log("Perdeu uma vida");
-                loseLive();
+                collideWithObject();
 
                 if (this.gameOver())
                 {
-                    Debug.Log("Game Over!");
+                    panelLose.gameObject.SetActive(true);
                 }
             }
         }
     }
 
-    void loseLive()
+    void collectTrash()
+    {
+        this.foundTrash++;
+        textTrash.text = this.foundTrash.ToString();
+    }
+
+    void collideWithObject()
     {
         this.lives--;
+        textLives.text = this.lives.ToString();
+    }
+
+    bool gameWin()
+    {
+        if (this.foundTrash == requiredTrash)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     bool gameOver()

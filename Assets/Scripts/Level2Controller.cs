@@ -4,10 +4,13 @@ using UnityEngine.UI;
 public class Level2Controller : MonoBehaviour
 {
     public int requiredPeaces;
-    int foundPeaces;
-    public Text text;
+    private int foundPeaces;
+    public Text textPeaces;
 
-    private void Start()
+    public GameObject panelWin;
+    public GameObject panelLose;
+
+    void Start()
     {
         foundPeaces = 0;
     }
@@ -20,10 +23,13 @@ public class Level2Controller : MonoBehaviour
 
             if (item.tag == "Peace")
             {
-                Debug.Log("a");
-
                 collectPeace();
                 item.tag = "Untagged";
+
+                if (this.gameWin())
+                {
+                    panelWin.gameObject.SetActive(true);
+                }
             }
         }
     }
@@ -31,7 +37,7 @@ public class Level2Controller : MonoBehaviour
     void collectPeace()
     {
         this.foundPeaces++;
-        text.text = this.foundPeaces.ToString();
+        textPeaces.text = this.foundPeaces.ToString();
     }
 
     bool gameWin()
