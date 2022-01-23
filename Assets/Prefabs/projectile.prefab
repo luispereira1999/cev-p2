@@ -144,3 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6bbbe67066ebd478f6ba58c760a106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positionVector: {x: 1, y: 0}
+  angle: 0
+  player: {fileID: 0}
+  positionEnemy: {x: 0.8722586, y: -8.198442}
+  speed: 1.5

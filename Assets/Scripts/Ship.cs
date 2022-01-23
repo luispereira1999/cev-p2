@@ -8,15 +8,20 @@ public class Ship : MonoBehaviour
     private bool isMoving = false;
     private AudioSource sound;
 
+    public Animator playerAnimator;
+    private BoxCollider2D boxCollider2d;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sound = GetComponent<AudioSource>();
+        boxCollider2d = this.GetComponent<BoxCollider2D>();
     }
 
     void Update()
     {
         MovePlayer();
+        PressKeys();
 
         if (rb.velocity.x != 0 || rb.velocity.y != 0)
         {
@@ -44,6 +49,34 @@ public class Ship : MonoBehaviour
     {
         movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         transform.position += movement * Time.deltaTime * speed;
+    }
+
+    private void PressKeys()
+    {
+        if (Input.GetAxisRaw("Vertical") == 1)
+        {
+            playerAnimator.Play("front");
+            boxCollider2d.offset = new Vector2(-0.004731469f, -0.001577131f);
+            boxCollider2d.size = new Vector2(0.2497821f, 0.4677865f);
+        }
+        if (Input.GetAxisRaw("Vertical") == -1)
+        {
+            playerAnimator.Play("back");
+            boxCollider2d.offset = new Vector2(-0.004731469f, -0.001577131f);
+            boxCollider2d.size = new Vector2(0.2497821f, 0.4677865f);
+        }
+        if (Input.GetAxisRaw("Horizontal") == 1)
+        {
+            playerAnimator.Play("right");
+            boxCollider2d.offset = new Vector2(-0.01311266f, 0.03933808f);
+            boxCollider2d.size = new Vector2(0.6268872f, 0.397415f);
+        }
+        if (Input.GetAxisRaw("Horizontal") == -1)
+        {
+            playerAnimator.Play("left");
+            boxCollider2d.offset = new Vector2(-0.01311266f, 0.03933808f);
+            boxCollider2d.size = new Vector2(0.6268872f, 0.397415f);
+        }
     }
 
     void FixedUpdate()

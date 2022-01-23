@@ -2,23 +2,26 @@ using UnityEngine;
 
 public class ShootProjectile : MonoBehaviour
 {
-    public Vector2 positionVector;
+    public float speed;
+    public float angle;
 
     void Start()
     {
-        GetComponent<Rigidbody2D>().AddForce(positionVector * 700);
+        Vector3 direction = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
+        GetComponent<Rigidbody2D>().AddForce(direction * speed);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy") && gameObject.name == "ball(Clone)")
         {
-
+            Enemy.health -= 0.15f;
+            Destroy(gameObject);
         }
-        else if (collision.CompareTag("Player"))
+        else if (collision.CompareTag("Player") && gameObject.name == "projectile(Clone)")
         {
             HeroLevel3.health -= 0.15f;
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
         else
         {

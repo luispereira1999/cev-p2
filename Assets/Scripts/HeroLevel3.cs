@@ -8,22 +8,31 @@ public class HeroLevel3 : MonoBehaviour
     private bool isMoving = false;
     private AudioSource sound;
 
+    public Animator playerAnimator;
+
     public Transform projectile;
+    private float angle;
     public Transform projectilePivot;
-    private Vector2 positionVector;
 
     public static float health;
+
+    public GameObject panelWin;
+    public GameObject panelLose;
+    public GameObject enemy;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sound = GetComponent<AudioSource>();
+        angle = 0f;
         health = 1;
     }
 
     void Update()
     {
         MovePlayer();
+        PressKeys();
 
         if (rb.velocity.x != 0 || rb.velocity.y != 0)
         {
@@ -46,26 +55,20 @@ public class HeroLevel3 : MonoBehaviour
             sound.Stop();
         }
 
-        if (Input.GetAxisRaw("Vertical") > 0)
+        if (GameOver())
         {
-            positionVector = Vector2.up;
-        }
-        if (Input.GetAxisRaw("Vertical") < 0)
-        {
-            positionVector = Vector2.down;
-        }
-        if (Input.GetAxisRaw("Horizontal") > 0)
-        {
-            positionVector = Vector2.right;
-        }
-        if (Input.GetAxisRaw("Horizontal") < 0)
-        {
-            positionVector = Vector2.left;
-        }
+            Destroy(Camera.main.GetComponent<CameraFollowPlayer>());
+            Camera.main.transform.parent = null;
 
-        if (Input.GetKeyDown("space"))
+            Destroy(gameObject);
+            panelLose.gameObject.SetActive(true);
+            Time.timeScale = 0;
+        }
+        if (GameWin())
         {
-            Attack();
+            Destroy(enemy.gameObject);
+            panelWin.gameObject.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 
@@ -80,27 +83,56 @@ public class HeroLevel3 : MonoBehaviour
         rb.velocity = movement;
     }
 
-    public void Attack()
+    private void PressKeys()
     {
-        Instantiate(projectile, projectilePivot.position, Quaternion.identity);
-        projectile.GetComponent<ShootProjectile>().positionVector = positionVector;
+        if (Input.GetAxisRaw("Vertical") == 1)
+        {
+            playerAnimator.Play("hero-back");
+            angle = 90f;
+        }
+        if (Input.GetAxisRaw("Vertical") == -1)
+        {
+            playerAnimator.Play("hero-front");
+            angle = 270f;
+        }
+        if (Input.GetAxisRaw("Horizontal") == 1)
+        {
+            playerAnimator.Play("hero-right");
+            angle = 0f;
+        }
+        if (Input.GetAxisRaw("Horizontal") == -1)
+        {
+            playerAnimator.Play("hero-left");
+            angle = 180f;
+        }
+        if (Input.GetKeyDown("space"))
+        {
+            Attack();
+        }
     }
 
-    //bool GameWin()
-    //{
-    //    if (enemy.health == 0)
-    //    {
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        return false;
-    //    }
-    //}
+    public void Attack()
+    {
+        Instantiate(projectile, projectilePivot.position, transform.rotation);
+        projectile.GetComponent<ShootProjectile>().speed = 500f;
+        projectile.GetComponent<ShootProjectile>().angle = angle;
+    }
 
     bool GameOver()
     {
         if (health <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    bool GameWin()
+    {
+        if (Enemy.health <= 0)
         {
             return true;
         }

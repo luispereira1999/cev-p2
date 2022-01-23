@@ -4,21 +4,21 @@ public class HeroAnimation : MonoBehaviour
 {
     public Animator playerAnimator;
 
-    void Update()
+    void PlayAnimation()
     {
-        if (Input.GetAxisRaw("Vertical") > 0)
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             playerAnimator.Play("back");
         }
-        if (Input.GetAxisRaw("Vertical") < 0)
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             playerAnimator.Play("front");
         }
-        if (Input.GetAxisRaw("Horizontal") > 0)
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             playerAnimator.Play("right");
         }
-        if (Input.GetAxisRaw("Horizontal") < 0)
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             playerAnimator.Play("left");
         }
