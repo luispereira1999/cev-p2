@@ -59,6 +59,7 @@ public class HeroLevel3 : MonoBehaviour
 
         if (GameOver())
         {
+            movementSound.Play();
             loseSound.Play();
             Camera.main.gameObject.GetComponent<AudioSource>().volume = 0;
 
@@ -71,6 +72,7 @@ public class HeroLevel3 : MonoBehaviour
         }
         if (GameWin())
         {
+            movementSound.Play();
             winSound.Play();
             Camera.main.gameObject.GetComponent<AudioSource>().volume = 0;
 

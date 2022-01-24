@@ -32,6 +32,7 @@ public class Level2Controller : MonoBehaviour
                 if (this.gameWin())
                 {
                     winSound.Play();
+                    Camera.main.gameObject.GetComponent<AudioSource>().volume = 0;
                     panelWin.gameObject.SetActive(true);
                 }
             }
