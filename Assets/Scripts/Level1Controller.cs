@@ -9,6 +9,9 @@ public class Level1Controller : MonoBehaviour
     public Text textTrash;
     public Text textLives;
 
+    public AudioSource loseSound;
+    public AudioSource winSound;
+
     public GameObject panelWin;
     public GameObject panelLose;
 
@@ -25,6 +28,8 @@ public class Level1Controller : MonoBehaviour
 
                 if (this.gameWin())
                 {
+                    winSound.Play();
+                    Camera.main.gameObject.GetComponent<AudioSource>().volume = 0;
                     panelWin.gameObject.SetActive(true);
                 }
             }
@@ -34,6 +39,8 @@ public class Level1Controller : MonoBehaviour
 
                 if (this.gameOver())
                 {
+                    loseSound.Play();
+                    Camera.main.gameObject.GetComponent<AudioSource>().volume = 0;
                     panelLose.gameObject.SetActive(true);
                 }
             }

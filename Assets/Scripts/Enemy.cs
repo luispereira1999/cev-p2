@@ -5,6 +5,8 @@ public class Enemy : MonoBehaviour
     public float speed;
     private Transform target;
 
+    public AudioSource attackSound;
+
     public Transform projectile;
     public Transform projectilePivot;
     public GameObject player;
@@ -27,6 +29,8 @@ public class Enemy : MonoBehaviour
 
     private void Attack()
     {
+        attackSound.Play();
+
         Vector3 dir = player.transform.position - transform.position;
         dir = player.transform.InverseTransformDirection(dir);
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

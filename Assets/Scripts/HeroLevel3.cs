@@ -6,7 +6,10 @@ public class HeroLevel3 : MonoBehaviour
     public float speed;
     private Vector3 movement;
     private bool isMoving = false;
-    private AudioSource sound;
+    public AudioSource movementSound;
+    public AudioSource attackSound;
+    public AudioSource loseSound;
+    public AudioSource winSound;
 
     public Animator playerAnimator;
 
@@ -24,7 +27,6 @@ public class HeroLevel3 : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        sound = GetComponent<AudioSource>();
         angle = 0f;
         health = 1;
     }
@@ -45,18 +47,21 @@ public class HeroLevel3 : MonoBehaviour
 
         if (isMoving)
         {
-            if (!sound.isPlaying)
+            if (!movementSound.isPlaying)
             {
-                sound.Play();
+                movementSound.Play();
             }
         }
         else
         {
-            sound.Stop();
+            movementSound.Stop();
         }
 
         if (GameOver())
         {
+            loseSound.Play();
+            Camera.main.gameObject.GetComponent<AudioSource>().volume = 0;
+
             Destroy(Camera.main.GetComponent<CameraFollowPlayer>());
             Camera.main.transform.parent = null;
 
@@ -66,6 +71,9 @@ public class HeroLevel3 : MonoBehaviour
         }
         if (GameWin())
         {
+            winSound.Play();
+            Camera.main.gameObject.GetComponent<AudioSource>().volume = 0;
+
             Destroy(enemy.gameObject);
             panelWin.gameObject.SetActive(true);
             Time.timeScale = 0;
@@ -107,6 +115,7 @@ public class HeroLevel3 : MonoBehaviour
         }
         if (Input.GetKeyDown("space"))
         {
+            attackSound.Play();
             Attack();
         }
     }

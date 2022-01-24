@@ -6,15 +6,14 @@ public class Ship : MonoBehaviour
     public float speed;
     private Vector3 movement;
     private bool isMoving = false;
-    private AudioSource sound;
 
+    public AudioSource movementSound;
     public Animator playerAnimator;
     private BoxCollider2D boxCollider2d;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        sound = GetComponent<AudioSource>();
         boxCollider2d = this.GetComponent<BoxCollider2D>();
     }
 
@@ -34,14 +33,14 @@ public class Ship : MonoBehaviour
 
         if (isMoving)
         {
-            if (!sound.isPlaying)
+            if (!movementSound.isPlaying)
             {
-                sound.Play();
+                movementSound.Play();
             }
         }
         else
         {
-            sound.Stop();
+            movementSound.Stop();
         }
     }
 

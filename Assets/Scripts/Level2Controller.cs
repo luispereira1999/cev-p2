@@ -7,6 +7,9 @@ public class Level2Controller : MonoBehaviour
     private int foundPeaces;
     public Text textPeaces;
 
+    public AudioSource loseSound;
+    public AudioSource winSound;
+
     public GameObject panelWin;
     public GameObject panelLose;
 
@@ -28,6 +31,7 @@ public class Level2Controller : MonoBehaviour
 
                 if (this.gameWin())
                 {
+                    winSound.Play();
                     panelWin.gameObject.SetActive(true);
                 }
             }

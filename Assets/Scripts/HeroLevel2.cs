@@ -6,14 +6,13 @@ public class HeroLevel2 : MonoBehaviour
     public float speed;
     private Vector3 movement;
     private bool isMoving = false;
-    private AudioSource sound;
 
+    public AudioSource movementSound;
     public Animator playerAnimator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        sound = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -32,14 +31,14 @@ public class HeroLevel2 : MonoBehaviour
 
         if (isMoving)
         {
-            if (!sound.isPlaying)
+            if (!movementSound.isPlaying)
             {
-                sound.Play();
+                movementSound.Play();
             }
         }
         else
         {
-            sound.Stop();
+            movementSound.Stop();
         }
     }
 
