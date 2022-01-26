@@ -2,8 +2,13 @@ using UnityEngine;
 
 public class ShootProjectile : MonoBehaviour
 {
-    public float speed;
+    public float speed = 500f;
     public float angle;
+
+    void Awake()
+    {
+        speed = 500f;
+    }
 
     void Start()
     {
