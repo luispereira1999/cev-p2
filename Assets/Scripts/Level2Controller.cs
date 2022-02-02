@@ -34,6 +34,7 @@ public class Level2Controller : MonoBehaviour
                     winSound.Play();
                     Camera.main.gameObject.GetComponent<AudioSource>().volume = 0;
                     panelWin.gameObject.SetActive(true);
+                    Time.timeScale = 0;
                 }
             }
         }

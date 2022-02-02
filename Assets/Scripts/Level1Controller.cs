@@ -31,6 +31,7 @@ public class Level1Controller : MonoBehaviour
                     winSound.Play();
                     Camera.main.gameObject.GetComponent<AudioSource>().volume = 0;
                     panelWin.gameObject.SetActive(true);
+                    Time.timeScale = 0;
                 }
             }
             else if (item.tag == "Obstacle")
@@ -42,6 +43,7 @@ public class Level1Controller : MonoBehaviour
                     loseSound.Play();
                     Camera.main.gameObject.GetComponent<AudioSource>().volume = 0;
                     panelLose.gameObject.SetActive(true);
+                    Time.timeScale = 0;
                 }
             }
         }
