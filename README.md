@@ -1,1 +1,2 @@
-# cev-p2
+# johnny-saves-the-planet
+Jogo sobre sustentabilidade ambiental.
